@@ -11,11 +11,6 @@ plugins {
     id("maven-publish")
 }
 
-repositories {
-    // Use Maven Central for resolving dependencies.
-    mavenCentral()
-}
-
 dependencies {
     // Use JUnit Jupiter for testing.
     testImplementation(libs.junit.jupiter)
@@ -37,19 +32,20 @@ tasks.named<Test>("test") {
 
 publishing {
     publications {
-        create<MavenPublication>("mavenJava") {
+        create<MavenPublication>("maven") {
             groupId = "com.github.xingray"
             artifactId = "java-value"
-            version = "1.0.0"
+            version = "1.0.1"
 
             from(components["java"])
         }
     }
 
-    repositories {
-        maven {
-            name = "local"
-            url = uri("file://D:/develop/maven/repository") // 本地Maven仓库路径
-        }
-    }
+//    repositories {
+//        maven {
+//            name = "local"
+//            // 本地Maven仓库路径
+//            url = uri("file://D:/develop/maven/repository")
+//        }
+//    }
 }
