@@ -11,6 +11,12 @@ plugins {
     id("maven-publish")
 }
 
+
+repositories{
+    google()
+    mavenCentral()
+}
+
 dependencies {
     // Use JUnit Jupiter for testing.
     testImplementation(libs.junit.jupiter)
@@ -21,7 +27,7 @@ dependencies {
 // Apply a specific Java toolchain to ease working on different environments.
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+        languageVersion = JavaLanguageVersion.of(17)
     }
 }
 
@@ -32,20 +38,12 @@ tasks.named<Test>("test") {
 
 publishing {
     publications {
-        create<MavenPublication>("maven") {
+        create<MavenPublication>("mavenJava") {
             groupId = "com.github.xingray"
             artifactId = "java-value"
-            version = "1.0.1"
+            version = "1.0.2"
 
             from(components["java"])
         }
     }
-
-//    repositories {
-//        maven {
-//            name = "local"
-//            // 本地Maven仓库路径
-//            url = uri("file://D:/develop/maven/repository")
-//        }
-//    }
 }
